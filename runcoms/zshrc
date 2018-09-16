@@ -11,3 +11,98 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+source ~/.zplug/init.zsh
+
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+# Plugins
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
+zplug "oz/safe-paste"
+zplug "jreese/zsh-titles"
+zplug "hlissner/zsh-autopair", defer:2
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check; then
+  zplug install
+fi
+
+# Then, source plugins and add commands to $PATH
+#zplug load --verbose
+zplug load
+#clear
+
+# Customize to your needs...
+eval $(keychain --eval --quiet ~/.ssh/github)
+
+if [ "$TMUX" = "" ]; then
+  tmux new-session -A -s 0
+fi
+
+
+alias _load-project='sudo mount /dev/sda7 /project'
+alias _resource-zsh='source ~/.zshrc'
+alias _resource-tmux='tmux source ~/.tmux.conf'
+alias _load-fun='sudo mount /dev/sda6 /fun'
+alias _load-c='sudo mount /dev/sda4 /mnt'
+alias _load-vm='sudo mount /dev/sda10 /vm'
+
+alias top='htop'
+alias cal='cal -m -n 3'
+
+alias _start-mysql='systemctl start mariadb.service'
+alias _start-postgresql='systemctl start postgresql.service'
+alias _start-eclimd='/usr/lib/eclipse/eclimd'
+alias _mosh-to-test="mosh --ssh='ssh -p 23171' bayo-ops@test.bayo.vn"
+alias _ssh-to-bookup-test='mosh --ssh="ssh -p 23171" bayo-ops@128.199.227.8'
+
+alias ls='exa -g --group-directories-first'
+alias la='exa -alg --group-directories-first'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gcommit='git commit -am'
+alias gfix='git add . && git fix'
+alias gfeat='git add . && git feat'
+alias gdocs='git add . && git docs'
+alias gchore='git add . && git chore'
+alias grefact='git add . && git refact'
+alias gstyle='git add . && git style'
+alias gtest='git add . && git test'
+alias gpush='git push origin'
+alias gpull='git pull --no-ff origin'
+alias gbuild='git add . && git build'
+alias glog='git log --pretty=short'
+alias gfetchco='git-fetch-then-checkout'
+alias gsync='git-sync'
+alias grsorigin='git-reset-origin'
+
+alias cmodx='sudo chmod +x '
+alias cmod600='sudo chmod 600'
+alias cmod700='sudo chmod 700'
+alias cmod777='sudo chmod 777'
+alias cmod744='sudo chmod 744'
+alias cmod766='sudo chmod 766'
+alias cmod644='sudo chmod 644'
+
+expand-or-complete-with-dots() {      # This bunch of code displays red dots when autocompleting
+  echo -n "\e[31m..\e[0m"         # a command with the tab key, "Oh-my-zsh"-style.
+  zle expand-or-complete
+  zle redisplay
+}
+
+zle -N expand-or-complete-with-dots
+bindkey "^I" expand-or-complete-with-dots
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+declare -F jump && eval "$(jump shell)"
+
+if [[ -f "/usr/share/nvm/init-nvm.sh" ]]; then
+  source /usr/share/nvm/init-nvm.sh
+fi
+
+SPACESHIP_BATTERY_SHOW=false
+SPACESHIP_EXIT_CODE_SHOW=true
+
+eval "$(rbenv init -)"
