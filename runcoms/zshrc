@@ -34,7 +34,7 @@ zplug load
 #clear
 
 # Customize to your needs...
-eval $(keychain --eval --quiet ~/.ssh/github)
+ # eval $(keychain --noask --gpg2 --eval --quiet ~/.ssh/github)
 
 if [ "$TMUX" = "" ]; then
   tmux new-session -A -s 0
@@ -106,3 +106,4 @@ SPACESHIP_BATTERY_SHOW=false
 SPACESHIP_EXIT_CODE_SHOW=true
 
 eval "$(rbenv init -)"
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh

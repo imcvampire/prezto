@@ -17,14 +17,11 @@ export LANG='en_US.UTF-8'
 export VDPAU_DRIVER=radeonsi
 
 export GOPATH=/project/go
-
 export ANDROID_HOME=${HOME}/Android/Sdk
-
 export NODE_PATH=/usr/bin/node
-
 export RUST_SRC_PATH=~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
-
-[ "$XDG_CURRENT_DESKTOP" = "KDE" ] || [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || export QT_QPA_PLATFORMTHEME="qt5ct"
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Djdk.gtk.version=3 -Dsun.java2d.opengl=true'
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 #echo $PATH
 
@@ -32,17 +29,14 @@ export RUST_SRC_PATH=~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/ru
 #export PATH=${PATH}:/usr/local/bin:/usr/local/sbin
 export PATH=${PATH}:~/bin:~/.local/bin:~/.local/sbin
 export PATH=${PATH}:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
-export PATH=${PATH}:~/.npm-global/bin
+# export PATH=${PATH}:~/.npm-global/bin
 export PATH=${PATH}:${GOPATH}/bin
 export PATH=${PATH}:~/scripts
 export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-export PATH=${PATH}:~/.gem/ruby/2.3.0/bin:~/.gem/ruby/2.4.0/bin
+export PATH=${PATH}:~/.gem/ruby/2.4.0/bin
 export PATH=${PATH}:~/git-semantic-commits
-export PATH=${PATH}:~/FlameGraph
 #export PATH=${PATH}:~/Downloads/google-cloud-sdk/bin
 export PATH=${PATH}:~/.cargo/bin
-export PATH=${PATH}:~/miniconda3/bin
-export PATH=${PATH}:~/miniconda2/bin
 
 for i in `ls /usr/share/groovy/lib/ | grep jar`; do
   export CLASSPATH=$CLASSPATH":/usr/share/groovy/lib/"$i
