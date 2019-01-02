@@ -44,12 +44,8 @@ if [ "$TMUX" = "" ]; then
 fi
 
 
-alias _load-project='sudo mount /dev/sda7 /project'
 alias _resource-zsh='source ~/.zshrc'
 alias _resource-tmux='tmux source ~/.tmux.conf'
-alias _load-fun='sudo mount /dev/sda6 /fun'
-alias _load-c='sudo mount /dev/sda4 /mnt'
-alias _load-vm='sudo mount /dev/sda10 /vm'
 
 alias top='htop'
 alias cal='cal -m -n 3'
@@ -57,8 +53,6 @@ alias cal='cal -m -n 3'
 alias _start-mysql='systemctl start mariadb.service'
 alias _start-postgresql='systemctl start postgresql.service'
 alias _start-eclimd='/usr/lib/eclipse/eclimd'
-alias _mosh-to-test="mosh --ssh='ssh -p 23171' bayo-ops@test.bayo.vn"
-alias _ssh-to-bookup-test='mosh --ssh="ssh -p 23171" bayo-ops@128.199.227.8'
 
 alias ls='exa -g --group-directories-first'
 alias la='exa -alg --group-directories-first'
