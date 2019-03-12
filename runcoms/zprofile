@@ -20,6 +20,7 @@ export GOPATH=/project/go
 export ANDROID_HOME=${HOME}/Android/Sdk
 export NODE_PATH=/usr/bin/node
 export RUST_SRC_PATH=~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+export JAVA_HOME=/usr/lib/jvm/default
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Djdk.gtk.version=3 -Dsun.java2d.opengl=true'
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
