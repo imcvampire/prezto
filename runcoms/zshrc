@@ -16,9 +16,6 @@ fi
 # Customize to your needs...
 source ~/.zplug/init.zsh
 
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
 # Plugins
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
@@ -37,12 +34,6 @@ zplug load
 #clear
 
 # Customize to your needs...
- # eval $(keychain --noask --gpg2 --eval --quiet ~/.ssh/github)
-
-if [ "$TMUX" = "" ]; then
-  tmux new-session -A -s 0
-fi
-
 
 alias _resource-zsh='source ~/.zshrc'
 alias _resource-tmux='tmux source ~/.tmux.conf'
@@ -50,10 +41,7 @@ alias _resource-tmux='tmux source ~/.tmux.conf'
 alias top='htop'
 alias cal='cal -m -n 3'
 
-alias _start-mysql='systemctl start mariadb.service'
-alias _start-postgresql='systemctl start postgresql.service'
-alias _start-eclimd='/usr/lib/eclipse/eclimd'
-
+alias vim='nvim'
 alias ls='lsd --group-dirs=first'
 alias la='lsd -al --group-dirs=first'
 alias gco='git checkout'
@@ -91,17 +79,18 @@ expand-or-complete-with-dots() {      # This bunch of code displays red dots whe
 zle -N expand-or-complete-with-dots
 bindkey "^I" expand-or-complete-with-dots
 
-[[ -f '/usr/share/fzf/key-bindings.zsh' ]] && source /usr/share/fzf/key-bindings.zsh
-[[ -f '/usr/share/fzf/completion.zsh' ]] && source /usr/share/fzf/completion.zsh
-
-declare -F jump && eval "$(jump shell)"
-
-if [[ -f "/usr/share/nvm/init-nvm.sh" ]]; then
-  source /usr/share/nvm/init-nvm.sh
-fi
 
 SPACESHIP_BATTERY_SHOW=false
 SPACESHIP_EXIT_CODE_SHOW=true
 
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
 eval "$(rbenv init -)"
-[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(jump shell)"
+
+source ~/.iterm2_shell_integration.zsh
+

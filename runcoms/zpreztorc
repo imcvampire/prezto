@@ -38,7 +38,8 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'helper' \
   'tmux' \
-  'pacman' \
+  'osx' \
+  'homebrew' \
   'history' \
   'node' \
   'python' \
@@ -107,7 +108,7 @@ zstyle ':prezto:module:git:status:ignore' submodules 'all'
 #
 
 # Set the keyword used by `mand` to open man pages in Dash.app
-# zstyle ':prezto:module:osx:man' dash-keyword 'manpages'
+zstyle ':prezto:module:osx:man' dash-keyword 'manpages'
 
 #
 # Pacman
