@@ -83,14 +83,24 @@ bindkey "^I" expand-or-complete-with-dots
 SPACESHIP_BATTERY_SHOW=false
 SPACESHIP_EXIT_CODE_SHOW=true
 
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
-
-eval "$(rbenv init -)"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(jump shell)"
 
 source ~/.iterm2_shell_integration.zsh
+
+
+. /usr/local/opt/asdf/asdf.sh
+
+HOMEBREW_PREFIX=$(brew --prefix)
+if type brew &>/dev/null; then
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+    done
+  fi
+fi
+
 
