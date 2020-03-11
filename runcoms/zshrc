@@ -12,6 +12,8 @@ ZSH_AUTOSUGGEST_USE_ASYNC=true
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit
 
 # Customize to your needs...
 source ~/.zplug/init.zsh
