@@ -18,7 +18,7 @@ source ~/.zplug/init.zsh
 
 # Plugins
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug "denysdovhan/spaceship-zsh-theme", use:spaceship.zsh, from:github, as:theme
+zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 zplug "oz/safe-paste"
 zplug "jreese/zsh-titles"
 zplug "hlissner/zsh-autopair", defer:2
