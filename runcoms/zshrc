@@ -7,19 +7,20 @@
 
 # Env for Prezto
 ZSH_AUTOSUGGEST_USE_ASYNC=true
+SPACESHIP_BATTERY_SHOW=false
+SPACESHIP_EXIT_CODE_SHOW=true
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
-autoload -U +X bashcompinit && bashcompinit
-autoload -U +X compinit && compinit
 
 # Customize to your needs...
 source ~/.zplug/init.zsh
 
 # Plugins
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug 'zdharma/fast-syntax-highlighting'
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 zplug "oz/safe-paste"
 zplug "jreese/zsh-titles"
@@ -81,28 +82,20 @@ expand-or-complete-with-dots() {      # This bunch of code displays red dots whe
 zle -N expand-or-complete-with-dots
 bindkey "^I" expand-or-complete-with-dots
 
-
-SPACESHIP_BATTERY_SHOW=false
-SPACESHIP_EXIT_CODE_SHOW=true
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(jump shell)"
 
 source ~/.iterm2_shell_integration.zsh
 
-
 . /usr/local/opt/asdf/asdf.sh
+eval "$(direnv hook zsh)"
 
 HOMEBREW_PREFIX=$(brew --prefix)
 if type brew &>/dev/null; then
-  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-  else
-    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
-    done
-  fi
-fi
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 
+  autoload -Uz compinit
+  compinit
+fi
 

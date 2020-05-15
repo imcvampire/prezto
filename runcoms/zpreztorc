@@ -47,7 +47,6 @@ zstyle ':prezto:load' pmodule \
   'node' \
   'python' \
   'ruby' \
-  'syntax-highlighting' \
   'autosuggestions' \
   'prompt'
 
@@ -178,12 +177,12 @@ zstyle ':prezto:module:pacman' frontend 'yay'
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
-zstyle ':prezto:module:syntax-highlighting' highlighters \
-  'main' \
-  'brackets' \
-  'pattern' \
-  'line' \
-  'root'
+# zstyle ':prezto:module:syntax-highlighting' highlighters \
+# 'main' \
+# 'brackets' \
+# 'pattern' \
+# 'line' \
+# 'root'
 
 # Set syntax highlighting styles.
 # zstyle ':prezto:module:syntax-highlighting' styles \
