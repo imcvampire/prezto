@@ -86,16 +86,27 @@ bindkey "^I" expand-or-complete-with-dots
 
 eval "$(jump shell)"
 
-source ~/.iterm2_shell_integration.zsh
+[ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
 
-. /usr/local/opt/asdf/asdf.sh
+case `uname` in
+  Darwin)
+    . /usr/local/opt/asdf/asdf.sh
+
+    HOMEBREW_PREFIX=$(brew --prefix)
+    if type brew &>/dev/null; then
+      FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
+      autoload -Uz compinit
+      compinit
+    fi
+  ;;
+  Linux)
+    source /opt/asdf-vm/asdf.sh
+    if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+      exec tmux
+    fi
+  ;;
+esac
+
 eval "$(direnv hook zsh)"
-
-HOMEBREW_PREFIX=$(brew --prefix)
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-
-  autoload -Uz compinit
-  compinit
-fi
 
