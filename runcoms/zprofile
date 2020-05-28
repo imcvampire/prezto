@@ -14,7 +14,7 @@ export SHELL='/bin/zsh'
 
 export LANG='en_US.UTF-8'
 
-# export GOPATH=/project/go
+export GOPATH=${HOME}/project/go
 export ANDROID_HOME=${HOME}/Library/Android/Sdk
 export ANDROID_SDK_ROOT=$ANDROID_HOME
 export NODE_PATH=$(npm -g root)
@@ -22,8 +22,10 @@ export NODE_PATH=$(npm -g root)
 export JAVA_HOME=`/usr/libexec/java_home`
 
 export PATH=${PATH}:~/scripts
-export PATH=${PATH}:~/git-semantic-commit
+export PATH=${PATH}:~/git-semantic-commits
 export PATH=${PATH}:`yarn global bin`
+export PATH=${PATH}:${GOPATH}/bin
+export PATH=${PATH}:"$(ruby -e 'puts Gem.user_dir')/bin"
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
